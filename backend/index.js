@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
+const noticeRoutes = require("./routes/noticeRoutes");
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 
 // Routes
 app.use("/auth", authRoutes);
+app.use("/notice", noticeRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
