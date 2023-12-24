@@ -8,6 +8,7 @@ const helpRoutes = require("./routes/helpRoutes");
 const gradeRoutes = require("./routes/gradeRoutes");
 const resourceRoutes = require("./routes/resourceRoutes");
 const attendanceRoutes = require("./routes/attendanceRoutes");
+const timetableRoutes = require("./routes/timetableRoutes");
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use("/help", helpRoutes);
 app.use("/grade", gradeRoutes);
 app.use("/resource", resourceRoutes);
 app.use("/attendance", attendanceRoutes);
+app.use("/timetable", timetableRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
