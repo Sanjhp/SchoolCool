@@ -7,16 +7,13 @@ const noticeRoutes = require("./routes/noticeRoutes");
 const helpRoutes = require("./routes/helpRoutes");
 const gradeRoutes = require("./routes/gradeRoutes");
 const resourceRoutes = require("./routes/resourceRoutes");
+const attendanceRoutes = require("./routes/attendanceRoutes");
 
 const app = express();
 
 // Connect to MongoDB
 mongoose.connect(
-  "mongodb+srv://schoolcool:schoolcool@schoolcool.dw6xd8y.mongodb.net/?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
+  "mongodb+srv://schoolcool:schoolcool@schoolcool.dw6xd8y.mongodb.net/?retryWrites=true&w=majority"
 );
 
 // Middleware
@@ -28,6 +25,7 @@ app.use("/notice", noticeRoutes);
 app.use("/help", helpRoutes);
 app.use("/grade", gradeRoutes);
 app.use("/resource", resourceRoutes);
+app.use("/attendance", attendanceRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
