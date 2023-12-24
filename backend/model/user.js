@@ -37,6 +37,16 @@ const userSchema = new mongoose.Schema({
   classTeacher: {
     type: String,
   },
+  children: {
+    type: [String], // Specify that it's an array of strings
+    validate: {
+      validator: function (value) {
+        // Custom validator to check if each element in the array is a valid string
+        return value.every((v) => typeof v === "string");
+      },
+      message: "Invalid value in children array",
+    },
+  },
 });
 
 // Create the User model

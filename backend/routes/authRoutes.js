@@ -14,4 +14,9 @@ router.put("/update-user/:id", authController.updateUser);
 // Delete user route
 router.delete("/delete-user/:id", authController.deleteUser);
 
+router.get("/user", authController.getAllUsers);
+router.get("/student", authController.getStudents);
+router.get("/teacher", authController.getTeachers);
+router.get("/parent", authController.getParents);
+
 module.exports = router;

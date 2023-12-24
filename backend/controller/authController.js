@@ -34,10 +34,14 @@ exports.signUp = async (req, res) => {
         type,
         schoolId,
       };
-    } else if (type === "teacher" || type === "parent" || type === "admin") {
+    } else if (type === "teacher" || type === "admin") {
       const schoolId = generateSchoolId();
-
       userData = { name, email, password, type, schoolId };
+    } else if (type === "parent") {
+      const schoolId = generateSchoolId();
+      const children = req.body.children || [];
+
+      userData = { name, email, password, type, schoolId, children };
     } else {
       return res.status(400).json({ error: "Invalid user type" });
     }
@@ -62,7 +66,8 @@ exports.login = async (req, res) => {
     const { email, password } = req.body;
 
     // Check if the user with the provided email exists
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).populate("children");
+
     if (!user) {
       return res.status(401).json({ error: "Invalid email or password" });
     }
@@ -76,11 +81,32 @@ exports.login = async (req, res) => {
     // Generate a JWT token with the user type
     const token = jwt.sign(
       { userId: user._id, email: user.email, userType: user.type },
-      process.env.JWT_SECRET, // Get secret key from environment variable
-      { expiresIn: "1h" } // Token expiration time
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
     );
 
-    res.status(200).json({ token, user, message: "Login successful" });
+    let parentDetails;
+    let childrenDetails;
+
+    if (user.type === "parent") {
+      // If parent, fetch details of children and parent separately
+      parentDetails = { ...user.toObject(), children: undefined };
+      const childrenIds = user.children; // Assuming children is an array of schoolIds
+      childrenDetails = await User.find({
+        schoolId: { $in: childrenIds },
+      });
+    } else {
+      // If other user types, fetch all users with the same school ID
+      parentDetails = user;
+      childrenDetails = await User.find({ schoolId: user.schoolId });
+    }
+
+    res.status(200).json({
+      token,
+      parent: parentDetails,
+      children: childrenDetails,
+      message: "Login successful",
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -138,6 +164,46 @@ exports.updateUser = async (req, res) => {
     res
       .status(200)
       .json({ message: "User updated successfully", user: updatedUser });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const allUsers = await User.find();
+    res.status(200).json({ users: allUsers });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.getStudents = async (req, res) => {
+  try {
+    const students = await User.find({ type: "student" });
+    res.status(200).json({ students });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.getParents = async (req, res) => {
+  try {
+    const parents = await User.find({ type: "parent" });
+    res.status(200).json({ parents });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.getTeachers = async (req, res) => {
+  try {
+    const teachers = await User.find({ type: "teacher" });
+    res.status(200).json({ teachers });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
