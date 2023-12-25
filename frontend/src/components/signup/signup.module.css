@@ -1,0 +1,137 @@
+/* eslint-disable */
+body {
+  overflow-x: hidden; /* Add this line to prevent horizontal scrolling */
+}
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle closest-side, #bbf7d0, #ffffff);
+  z-index: -1;
+}
+
+.signupCard {
+  padding: 40px;
+  border-radius: 10px;
+  width: 60%;
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  color: #ffffff;
+  width: 100%;
+  max-width: 525px;
+  margin: 0 auto;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.h2 {
+  font-size: 24px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.errorMessage {
+  color: #ff6c91;
+  margin-top: 10px;
+}
+
+.loginLink {
+  color: #03554e;
+  text-decoration: none;
+}
+
+.button {
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  background: #03554e;
+}
+
+.inputContainer {
+  margin-bottom: 20px;
+  text-align: left;
+  max-width: 95%;
+}
+
+.label {
+  color: #060606;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input {
+  padding: 10px;
+  border: 1px solid #a3a3a3;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.registerContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  padding: 0 2rem;
+  margin-right: 50px;
+  overflow-x: hidden;
+}
+
+.leftContainer,
+.rightContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.leftContainer {
+  width: 40%;
+  margin-top: 100px;
+}
+
+.rightContainer {
+  width: 60%;
+  max-width: 525px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.leftContainerContent {
+  text-align: center;
+}
+
+.leftContainerContent h2 {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.leftContainerContent p {
+  font-size: 1.3rem;
+}
+
+.rightContainerContent h2 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.rightContainerContent p {
+  font-size: 20px;
+  color: #5f5982;
+}
