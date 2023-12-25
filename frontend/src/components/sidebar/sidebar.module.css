@@ -1,0 +1,21 @@
+/* Sidebar.module.css */
+.sidebar {
+  background-color: #03554e;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 15%; /* Set the width to 30% of the viewport */
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.sidebarItem span {
+  margin-left: 10px;
+}

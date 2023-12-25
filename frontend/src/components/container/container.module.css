@@ -1,0 +1,6 @@
+/* Container.module.css */
+.container {
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
