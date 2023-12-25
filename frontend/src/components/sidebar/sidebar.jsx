@@ -25,11 +25,6 @@ const Sidebar = ({ role }) => {
           link: "/admin/dashboard",
         },
         {
-          label: "Resource Management",
-          icon: <FaUser />,
-          link: "/admin/resource-management",
-        },
-        {
           label: "Manage Attendance",
           icon: <FaRegCalendarAlt />,
           link: "/admin/manage-attendance",

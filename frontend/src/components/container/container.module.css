@@ -1,6 +1,22 @@
-/* Container.module.css */
 .container {
   padding: 20px;
-  flex: 1;
-  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  position: fixed;
+  margin-left: 17em;
+  margin-right: 1em;
+  top: 4.5em;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar on Firefox */
+}
+
+.container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar on Chrome, Safari, and Opera */
 }

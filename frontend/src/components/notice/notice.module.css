@@ -1,0 +1,43 @@
+.mainStu {
+  width: 100%;
+  padding: 20px;
+}
+
+.mainStu h2 {
+  font-size: 25px;
+  color: #03554e;
+  text-align: center;
+}
+
+.input {
+  margin-left: 6.9em; /* Adjusted margin */
+  width: 80%; /* Increased width */
+  border: 2px solid #03554e;
+  padding: 10px;
+}
+
+.text_area_input {
+  border: 2px solid #03554e;
+  margin-left: 5em;
+  width: 80%; /* Increased width */
+  min-height: 300px;
+  padding: 10px;
+}
+
+.add {
+  color: white;
+  border: none;
+  outline: none;
+  background: #03554e;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 20px auto; /* Centered horizontally */
+  display: block; /* Ensures block-level display for margin auto to work */
+}
+
+.text_area {
+  margin-top: 20px;
+  display: flex;
+}

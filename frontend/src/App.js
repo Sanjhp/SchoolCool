@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginPage from "./components/login/login";
 import SignupPage from "./components/signup/signup";
 import Homepage from "./components/homepage/homepage";
@@ -18,12 +18,14 @@ function App() {
       {role === "admin" && <Admin role={role} />}
       {role === "staff" && <Staff role={role} />}
 
-      {!role && (
+      {role === "undefined" && (
         // If role is not defined, render these routes
         <>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/" element={<Homepage />} />
-          <Route path="/signup" element={<SignupPage />} />
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/" element={<Homepage />} />
+            <Route path="/signup" element={<SignupPage />} />
+          </Routes>
         </>
       )}
     </Router>

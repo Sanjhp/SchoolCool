@@ -202,7 +202,7 @@ exports.getParents = async (req, res) => {
 
 exports.getTeachers = async (req, res) => {
   try {
-    const teachers = await User.find({ type: "teacher" });
+    const teachers = await User.find({ type: "staff" });
     res.status(200).json({ teachers });
   } catch (error) {
     console.error(error);
