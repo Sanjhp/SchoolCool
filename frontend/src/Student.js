@@ -10,14 +10,14 @@ function Student({ role }) {
     // Main Content Container
     <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
       {/* Header */}
-      <Header id="header" />
+      <Header role={role} />
 
       <div style={{ display: "flex", minHeight: "100vh" }}>
         {/* Sidebar */}
-        <Sidebar role={role} id="sidebar" />
+        <Sidebar role={role} />
 
         {/* Main Content */}
-        <Container id="container">
+        <Container>
           <Routes>
             <Route path="/studentdashboard" element={<LoginPage />} />
           </Routes>

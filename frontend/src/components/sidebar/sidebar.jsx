@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import {
   FaHome,
   FaNewspaper,
-  FaChalkboardTeacher,
   FaBookReader,
+  FaUser,
+  FaRegCalendarAlt,
+  FaFileAlt,
+  FaUsers,
 } from "react-icons/fa";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import styles from "./sidebar.module.css"; // Your module CSS file
@@ -22,16 +25,47 @@ const Sidebar = ({ role }) => {
           link: "/admin/dashboard",
         },
         {
-          label: "Create Notice",
-          icon: <FaNewspaper />,
-          link: "/admin/create-notice",
+          label: "Resource Management",
+          icon: <FaUser />,
+          link: "/admin/resource-management",
         },
         {
-          label: "Update Staff",
-          icon: <FaChalkboardTeacher />,
-          link: "/admin/update-staff",
+          label: "Manage Attendance",
+          icon: <FaRegCalendarAlt />,
+          link: "/admin/manage-attendance",
+        },
+        {
+          label: "Grades",
+          icon: <FaBookReader />,
+          link: "/admin/grades",
+        },
+        {
+          label: "Course Schedule",
+          icon: <FaFileAlt />,
+          link: "/admin/course-schedule",
+        },
+        {
+          label: "Notice",
+          icon: <FaNewspaper />,
+          link: "/admin/notice",
+        },
+        {
+          label: "Add Notice",
+          icon: <FaNewspaper />,
+          link: "/admin/add-notice",
+        },
+        {
+          label: "Staff Information",
+          icon: <FaUsers />,
+          link: "/admin/staff-information",
+        },
+        {
+          label: "Student Information",
+          icon: <FaUsers />,
+          link: "/admin/student-information",
         },
       ];
+
       break;
     case "student":
       sidebarData = [
@@ -41,11 +75,20 @@ const Sidebar = ({ role }) => {
           link: "/student/dashboard",
         },
         {
+          label: "Grades",
+          icon: <FaBookReader />,
+          link: "/student/grades",
+        },
+        {
+          label: "Notice",
+          icon: <FaNewspaper />,
+          link: "/student/notice",
+        },
+        {
           label: "Help",
           icon: <BsFillQuestionCircleFill />,
           link: "/student/help",
         },
-        { label: "Grades", icon: <FaBookReader />, link: "/student/grades" },
       ];
       break;
     case "staff":
@@ -55,13 +98,43 @@ const Sidebar = ({ role }) => {
           icon: <FaHome />,
           link: "/staff/dashboard",
         },
-        { label: "Courses", icon: <FaBookReader />, link: "/staff/courses" },
         {
-          label: "Create Notice",
+          label: "Grades",
+          icon: <FaBookReader />,
+          link: "/staff/grades",
+        },
+        {
+          label: "Attendance",
+          icon: <FaRegCalendarAlt />,
+          link: "/staff/attendance",
+        },
+        {
+          label: "Student Information",
+          icon: <FaUsers />,
+          link: "/staff/student-information",
+        },
+        {
+          label: "Course",
+          icon: <FaFileAlt />,
+          link: "/staff/course",
+        },
+        {
+          label: "Help",
+          icon: <BsFillQuestionCircleFill />,
+          link: "/staff/help",
+        },
+        {
+          label: "Notice",
           icon: <FaNewspaper />,
-          link: "/staff/create-notice",
+          link: "/staff/notice",
+        },
+        {
+          label: "Add Notice",
+          icon: <FaNewspaper />,
+          link: "/staff/add-notice",
         },
       ];
+
       break;
     case "parent":
       sidebarData = [
@@ -71,12 +144,22 @@ const Sidebar = ({ role }) => {
           link: "/parent/dashboard",
         },
         {
+          label: "Grades",
+          icon: <FaBookReader />,
+          link: "/parent/grades",
+        },
+        {
+          label: "Notice",
+          icon: <FaNewspaper />,
+          link: "/parent/notice",
+        },
+        {
           label: "Help",
           icon: <BsFillQuestionCircleFill />,
           link: "/parent/help",
         },
-        { label: "Notice", icon: <FaNewspaper />, link: "/parent/notice" },
       ];
+
       break;
     default:
       sidebarData = [];
