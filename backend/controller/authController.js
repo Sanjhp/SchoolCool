@@ -209,3 +209,28 @@ exports.getTeachers = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+// authController.js
+exports.getUserByEmail = async (req, res) => {
+  try {
+    const { email } = req.params;
+
+    // Find the user by email
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Omitting children details
+    const userDetails = { ...user.toObject(), children: undefined };
+
+    res.status(200).json({
+      user: userDetails,
+      message: "User information retrieved successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};

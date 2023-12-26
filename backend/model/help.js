@@ -17,6 +17,11 @@ const helpSchema = new mongoose.Schema({
   reply: {
     type: String,
   },
+  status: {
+    type: String,
+    enum: ["open", "closed"],
+    required: true,
+  },
 });
 
 // Create the Help model

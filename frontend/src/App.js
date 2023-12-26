@@ -9,7 +9,7 @@ import Parent from "./Parent";
 import Admin from "./Admin";
 
 function App() {
-  const role = "admin"; // Set the role as needed
+  const role = "student"; // Set the role as needed
 
   return (
     <Router>

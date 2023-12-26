@@ -17,6 +17,7 @@ exports.help = async (req, res) => {
       title,
       content,
       schoolId,
+      status: "open",
       reply,
     });
 
@@ -25,6 +26,45 @@ exports.help = async (req, res) => {
 
     // Respond with the saved help
     res.status(201).json(savedHelp);
+  } catch (err) {
+    // Handle errors
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.closedQuery = async (req, res) => {
+  try {
+    const schoolId = req.params.schoolId;
+
+    // Validate request data
+    if (!schoolId) {
+      return res
+        .status(400)
+        .json({ message: "School ID is a required parameter." });
+    }
+
+    // Find closed help items with the given school ID
+    const closedHelpItems = await Help.find({
+      status: "closed",
+      schoolId: schoolId,
+    });
+
+    // Respond with the closed help items
+    res.json(closedHelpItems);
+  } catch (err) {
+    // Handle errors
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// GET endpoint for open help items
+exports.openQuery = async (req, res) => {
+  try {
+    // Find help items with status 'open'
+    const openHelpItems = await Help.find({ status: "open" });
+
+    // Respond with the open help items
+    res.json(openHelpItems);
   } catch (err) {
     // Handle errors
     res.status(500).json({ message: err.message });
@@ -53,6 +93,7 @@ exports.updateHelpReply = async (req, res) => {
 
     // Update the reply field
     help.reply = reply;
+    help.status = "closed";
 
     // Save the updated help to the database
     const updatedHelp = await help.save();

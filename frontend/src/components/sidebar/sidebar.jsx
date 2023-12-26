@@ -70,9 +70,9 @@ const Sidebar = ({ role }) => {
           link: "/student/dashboard",
         },
         {
-          label: "Grades",
+          label: "Student Profile",
           icon: <FaBookReader />,
-          link: "/student/grades",
+          link: "/student/profile",
         },
         {
           label: "Notice",
@@ -80,9 +80,14 @@ const Sidebar = ({ role }) => {
           link: "/student/notice",
         },
         {
-          label: "Help",
+          label: "Raise Query",
           icon: <BsFillQuestionCircleFill />,
           link: "/student/help",
+        },
+        {
+          label: "Query Reply",
+          icon: <BsFillQuestionCircleFill />,
+          link: "/student/reply",
         },
       ];
       break;
@@ -139,9 +144,9 @@ const Sidebar = ({ role }) => {
           link: "/parent/dashboard",
         },
         {
-          label: "Grades",
+          label: "Profile",
           icon: <FaBookReader />,
-          link: "/parent/grades",
+          link: "/parent/profile",
         },
         {
           label: "Notice",
@@ -149,9 +154,14 @@ const Sidebar = ({ role }) => {
           link: "/parent/notice",
         },
         {
-          label: "Help",
+          label: "Raise Query",
           icon: <BsFillQuestionCircleFill />,
           link: "/parent/help",
+        },
+        {
+          label: "Query Reply",
+          icon: <BsFillQuestionCircleFill />,
+          link: "/parent/reply",
         },
       ];
 

@@ -3,90 +3,143 @@ import axios from "axios";
 import styles from "./manageAttendance.module.css";
 
 const ManageAttendance = () => {
-  const [count, setCount] = useState({
-    studentCount: "",
-    staffCount: "",
-  });
+  const [classCode, setClassCode] = useState("");
+  const [students, setStudents] = useState([]);
+  const [attendanceData, setAttendanceData] = useState([]);
   const [error, setError] = useState("");
 
-  async function getCounts() {
+  useEffect(() => {
+    // Fetch students when the component mounts or when classCode changes
+    if (classCode) {
+      fetchStudents();
+    }
+  }, [classCode]);
+
+  const fetchStudents = async () => {
     try {
-      const studentResponse = await axios.get("/auth/student");
-      const staffResponse = await axios.get("/auth/staff");
-
-      if (studentResponse.status !== 200 || staffResponse.status !== 200) {
-        console.log(studentResponse.status, staffResponse.status);
-      } else {
+      const response = await axios.get(
+        `/attendance/attendance/class/${classCode}`
+      );
+      if (response.status === 200) {
         setError("");
-
-        const studentCount = Array.isArray(studentResponse.data)
-          ? studentResponse.data.length
-          : 0;
-
-        setCount({
-          studentCount,
-          staffCount: staffResponse.data.length,
-        });
+        setStudents(response.data);
+        initializeAttendanceData(response.data);
+      } else {
+        setError("Error fetching attendance data");
       }
     } catch (err) {
       console.log(err);
-      setError(err.response.data.msg);
+      setError(err.response?.data?.msg || "An error occurred.");
     }
-  }
+  };
 
-  useEffect(() => {
-    getCounts();
-  }, []);
+  const initializeAttendanceData = (students) => {
+    const initialAttendanceData = students.map((student) => ({
+      id: student._id,
+      name: `Student ${student._id}`,
+      presentDays: student.presentDays || 0,
+      absentDays: student.absentDays || 0,
+      status: "", // "present" or "absent"
+    }));
+    setAttendanceData(initialAttendanceData);
+  };
+
+  const handleRadioChange = (index, status) => {
+    const updatedAttendanceData = [...attendanceData];
+    updatedAttendanceData[index].status = status;
+    setAttendanceData(updatedAttendanceData);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const updatedAttendance = attendanceData.map((student) => ({
+        _id: student.id,
+        presentDays:
+          student.status === "present"
+            ? student.presentDays + 1
+            : student.presentDays,
+        absentDays:
+          student.status === "absent"
+            ? student.absentDays + 1
+            : student.absentDays,
+      }));
+
+      // Make the API call to update attendance data
+      const response = await axios.put(
+        `/attendance/update-attendance`,
+        updatedAttendance
+      );
+
+      if (response.status === 200) {
+        console.log("Attendance data updated successfully:", response.data);
+        setError("");
+      } else {
+        setError("Error updating attendance data");
+      }
+    } catch (err) {
+      console.log(err);
+      setError(err.response?.data?.msg || "An error occurred.");
+    }
+  };
 
   return (
     <div className={styles.mainStu}>
-      <h1 className={styles.heading}>Summary</h1>
+      <h2 className={styles.heading}>Manage Attendance</h2>
+      <div className={styles.inputGroup}>
+        <input
+          type="text"
+          placeholder="Enter Class Code"
+          value={classCode}
+          onChange={(e) => setClassCode(e.target.value)}
+        />
+        <button className={styles.fetchButton} onClick={fetchStudents}>
+          Fetch Student List
+        </button>
+      </div>
       <table className={styles.studentTable}>
         <thead className={styles.tableHead}>
           <tr>
-            <th>Resource</th>
-            <th>Available Resources</th>
-            <th>Action</th>
+            <th>Name</th>
+            <th>Present Days</th>
+            <th>Absent Days</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{count.studentCount}</td>
-            <td>{count.staffCount}</td>
-            <td>
-              <button
-                type="button"
-                className={styles.edit}
-                // onClick={() => handleEdit(item.id)}
-              >
-                Edit
-              </button>
-              <button
-                type="button"
-                className={styles.delete}
-                // onClick={() => handleDelete(item.id)}
-              >
-                Delete
-              </button>
-            </td>{" "}
-          </tr>
+          {attendanceData.map((student, index) => (
+            <tr key={index}>
+              <td>{student.name}</td>
+              <td>{student.presentDays}</td>
+              <td>{student.absentDays}</td>
+              <td>
+                <label>
+                  <input
+                    type="radio"
+                    name={`status-${index}`}
+                    value="present"
+                    checked={student.status === "present"}
+                    onChange={() => handleRadioChange(index, "present")}
+                  />
+                  Present
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name={`status-${index}`}
+                    value="absent"
+                    checked={student.status === "absent"}
+                    onChange={() => handleRadioChange(index, "absent")}
+                  />
+                  Absent
+                </label>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
-      {error.length !== 0 && <div style={{ color: "red" }}>*{error}</div>}
-      <table className={styles.studentTable}>
-        <thead className={styles.tableHead}>
-          <tr>
-            <th>Student Count</th>
-            <th>Staff Count</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{count.studentCount}</td>
-            <td>{count.staffCount}</td>
-          </tr>
-        </tbody>
-      </table>
+      <button className={styles.submitButton} onClick={handleSubmit}>
+        Submit
+      </button>
     </div>
   );
 };
