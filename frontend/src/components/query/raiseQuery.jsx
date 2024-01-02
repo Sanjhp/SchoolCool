@@ -47,6 +47,15 @@ const RaiseQuery = () => {
                 onChange={(e) => setTitle(e.target.value)}
               ></input>
             </div>
+            <div style={{ display: "flex", marginTop: "20px" }}>
+              <label>S ID: </label>
+              <input
+                type="text"
+                className={style.input}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              ></input>
+            </div>
             <div className={style.text_area}>
               <label>Content:</label>
               <textarea

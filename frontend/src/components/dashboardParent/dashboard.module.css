@@ -131,3 +131,11 @@
     font-size: 12px;
   }
 }
+
+.inputSearchGrades {
+  border: none;
+  border-bottom: 1px solid #03554e;
+  outline: none;
+  margin-left: 20px;
+  width: 100px;
+}

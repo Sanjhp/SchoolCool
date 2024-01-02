@@ -6,7 +6,7 @@ import Header from "./components/Header/header";
 import Notice from "./components/notice/notice";
 import RaiseQuery from "./components/query/raiseQuery";
 import QueryReply from "./components/query/queryReply";
-import Dashboard from "./components/dashboard/dashboard";
+import Dashboard from "./components/dashboardParent/dashboard";
 
 function Student({ role }) {
   return (

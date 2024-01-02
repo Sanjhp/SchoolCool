@@ -60,7 +60,7 @@ function LoginPage() {
 
     console.log("token", storedToken);
     navigate("/dashboard");
-    // window.location.reload();
+    window.location.reload();
     console.log(storedUser);
   };
 

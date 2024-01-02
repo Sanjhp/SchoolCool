@@ -10,14 +10,14 @@ const Header = ({ role }) => {
   const navigate = useNavigate();
 
   // Define the dashboard link based on the role
-  const dashboardLink = `/${role}/dashboard`;
+  const dashboardLink = `/dashboard`;
 
   const handleLogout = () => {
     // Clear the "user" cookie
     Cookies.remove("user");
-
     // Navigate to the home page
     navigate("/");
+    window.location.reload();
   };
 
   return (

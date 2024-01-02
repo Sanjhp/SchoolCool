@@ -69,8 +69,8 @@ const Notice = () => {
         {notice.map((notice, index) => (
           <Accordion
             key={index}
-            title={notice.title}
-            content={notice.content}
+            title={notice?.title}
+            content={notice?.content}
           />
         ))}
       </div>

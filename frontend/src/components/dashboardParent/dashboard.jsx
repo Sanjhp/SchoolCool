@@ -8,6 +8,9 @@ const Dashboard = () => {
     staffCount: "",
   });
   const [error, setError] = useState("");
+  const [selectedSchoolId, setSelectedSchoolId] = useState("4483833"); // Default value
+
+  const dummySchoolIds = ["4483833", "1234567", "9876543", "5555555"];
 
   async function getCounts() {
     try {
@@ -41,6 +44,21 @@ const Dashboard = () => {
   return (
     <div className={styles.mainStu}>
       <h1 className={styles.heading}>Summary</h1>
+      <div style={{ marginBottom: "20px" }}>
+        <label htmlFor="schoolId">Select School ID:</label>
+        <select
+          id="schoolId"
+          className={styles.inputSearchGrades}
+          onChange={(e) => setSelectedSchoolId(e.target.value)}
+          value={selectedSchoolId}
+        >
+          {dummySchoolIds.map((id) => (
+            <option key={id} value={id}>
+              {id}
+            </option>
+          ))}
+        </select>
+      </div>
       <table className={styles.studentTable}>
         <thead className={styles.tableHead}>
           <tr>
@@ -58,6 +76,21 @@ const Dashboard = () => {
         </tbody>
       </table>
       {error.length !== 0 && <div style={{ color: "red" }}>*{error}</div>}
+      <div style={{ marginBottom: "20px" }}>
+        <label htmlFor="schoolId">Select School ID:</label>
+        <select
+          id="schoolId"
+          className={styles.inputSearchGrades}
+          onChange={(e) => setSelectedSchoolId(e.target.value)}
+          value={selectedSchoolId}
+        >
+          {dummySchoolIds.map((id) => (
+            <option key={id} value={id}>
+              {id}
+            </option>
+          ))}
+        </select>
+      </div>
       <table className={styles.studentTable}>
         <thead className={styles.tableHead}>
           <tr>

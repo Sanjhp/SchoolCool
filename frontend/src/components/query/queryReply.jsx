@@ -74,6 +74,7 @@ const QueryReply = () => {
           <label htmlFor="schoolId">Select School ID:</label>
           <select
             id="schoolId"
+            className={style.inputSearchGrades}
             onChange={(e) => setSelectedSchoolId(e.target.value)}
             value={selectedSchoolId}
           >
