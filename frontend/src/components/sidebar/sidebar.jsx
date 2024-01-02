@@ -22,7 +22,7 @@ const Sidebar = ({ role }) => {
         {
           label: "Admin Dashboard",
           icon: <FaHome />,
-          link: "/admin/dashboard",
+          link: "/dashboard",
         },
         {
           label: "Manage Attendance",
@@ -67,7 +67,7 @@ const Sidebar = ({ role }) => {
         {
           label: "Student Dashboard",
           icon: <FaHome />,
-          link: "/student/dashboard",
+          link: "/dashboard",
         },
         {
           label: "Student Profile",
@@ -96,7 +96,7 @@ const Sidebar = ({ role }) => {
         {
           label: "Staff Dashboard",
           icon: <FaHome />,
-          link: "/staff/dashboard",
+          link: "/dashboard",
         },
         {
           label: "Grades",
@@ -141,7 +141,7 @@ const Sidebar = ({ role }) => {
         {
           label: "Parent Dashboard",
           icon: <FaHome />,
-          link: "/parent/dashboard",
+          link: "/dashboard",
         },
         {
           label: "Profile",

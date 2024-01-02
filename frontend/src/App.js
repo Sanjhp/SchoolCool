@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginPage from "./components/login/login";
 import SignupPage from "./components/signup/signup";
@@ -7,9 +7,27 @@ import Student from "./Student";
 import Staff from "./Staff";
 import Parent from "./Parent";
 import Admin from "./Admin";
+import Cookies from "js-cookie";
 
 function App() {
-  const role = "student"; // Set the role as needed
+  // Use state to manage the role
+  const [role, setRole] = useState("undefined");
+
+  useEffect(() => {
+    // Fetch the user data from cookies
+    const userData = Cookies.get("user");
+
+    if (userData) {
+      // Parse the user data JSON
+      const user = JSON.parse(userData);
+
+      // Extract the role from the user data
+      const userRole = user.parent?.type || "undefined";
+
+      // Set the role in the state
+      setRole(userRole);
+    }
+  }, []); // Empty dependency array to run the effect only once
 
   return (
     <Router>

@@ -25,7 +25,7 @@ function Admin({ role }) {
           <Routes>
             <Route path="/admin/notice" element={<Notice />} />
             <Route path="/admin/add-notice" element={<AddNotice />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/dashboard" element={<AdminDashboard />} />
             <Route
               path="/admin/staff-information"
               element={<StaffManagement />}

@@ -59,7 +59,7 @@ function LoginPage() {
     const storedToken = Cookies.get("token");
 
     console.log("token", storedToken);
-    // navigate("/dashboard");
+    navigate("/dashboard");
     // window.location.reload();
     console.log(storedUser);
   };

@@ -22,7 +22,7 @@ function Parent({ role }) {
         {/* Main Content */}
         <Container>
           <Routes>
-            <Route path="/parent/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/parent/notice" element={<Notice />} />
             <Route path="/parent/help" element={<RaiseQuery />} />
             <Route path="/parent/reply" element={<QueryReply />} />

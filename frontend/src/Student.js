@@ -22,7 +22,7 @@ function Student({ role }) {
         {/* Main Content */}
         <Container>
           <Routes>
-            <Route path="/student/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/student/notice" element={<Notice />} />
             <Route path="/student/help" element={<RaiseQuery />} />
             <Route path="/student/reply" element={<QueryReply />} />
