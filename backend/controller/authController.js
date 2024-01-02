@@ -14,6 +14,8 @@ exports.signUp = async (req, res) => {
   try {
     const { name, email, password, type } = req.body;
 
+    // console.log(req.body);
+
     // Check if email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -34,7 +36,7 @@ exports.signUp = async (req, res) => {
         type,
         schoolId,
       };
-    } else if (type === "teacher" || type === "admin") {
+    } else if (type === "staff" || type === "admin") {
       const schoolId = generateSchoolId();
       userData = { name, email, password, type, schoolId };
     } else if (type === "parent") {
@@ -80,7 +82,15 @@ exports.login = async (req, res) => {
 
     // Generate a JWT token with the user type
     const token = jwt.sign(
-      { userId: user._id, email: user.email, userType: user.type },
+      {
+        userId: user._id,
+        email: user.email,
+        userType: user.type,
+        address: user.address,
+        phone: user.phone,
+        validId: user.selfId,
+        children: user.children,
+      },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
@@ -90,7 +100,16 @@ exports.login = async (req, res) => {
 
     if (user.type === "parent") {
       // If parent, fetch details of children and parent separately
-      parentDetails = { ...user.toObject(), children: undefined };
+      parentDetails = {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        type: user.type,
+        address: user.address,
+        phone: user.phone,
+        validId: user.selfId,
+        children: undefined,
+      };
       const childrenIds = user.children; // Assuming children is an array of schoolIds
       childrenDetails = await User.find({
         schoolId: { $in: childrenIds },
@@ -133,7 +152,16 @@ exports.deleteUser = async (req, res) => {
 exports.updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { class: updatedClass, rollNumber, subject, classTeacher } = req.body;
+    const {
+      class: updatedClass,
+      rollNumber,
+      subject,
+      classTeacher,
+      address,
+      phone,
+      selfId,
+      children,
+    } = req.body;
 
     // Find the user by ID
     const user = await User.findById(id);
@@ -153,6 +181,18 @@ exports.updateUser = async (req, res) => {
     }
     if (classTeacher) {
       user.classTeacher = classTeacher;
+    }
+    if (address) {
+      user.address = address;
+    }
+    if (phone) {
+      user.phone = phone;
+    }
+    if (selfId) {
+      user.selfId = selfId;
+    }
+    if (children) {
+      user.children = children;
     }
 
     // Save the updated user to the database

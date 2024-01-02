@@ -37,6 +37,15 @@ const userSchema = new mongoose.Schema({
   classTeacher: {
     type: String,
   },
+  address: {
+    type: String,
+  },
+  phone: {
+    type: String,
+  },
+  selfId: {
+    type: String,
+  },
   children: {
     type: [String], // Specify that it's an array of strings
     validate: {

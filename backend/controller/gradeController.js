@@ -4,13 +4,14 @@ const User = require("../model/user");
 // Create a new grade
 exports.createGrade = async (req, res) => {
   try {
-    const { schoolId, subject, marks } = req.body;
+    const { schoolId, subject, marks, paper } = req.body;
+    console.log(req.body);
 
     // Validate request data
-    if (!schoolId || !subject || !marks) {
-      return res
-        .status(400)
-        .json({ message: "schoolId, subject, and marks are required fields." });
+    if (!schoolId || !subject || !marks || !paper) {
+      return res.status(400).json({
+        message: "schoolId, subject, marks, and paper are required fields.",
+      });
     }
 
     // Check if the user exists
@@ -27,6 +28,7 @@ exports.createGrade = async (req, res) => {
       class: user.class,
       subject,
       marks,
+      paper, // Use the paper value from req.body
     });
 
     // Save the new grade to the database

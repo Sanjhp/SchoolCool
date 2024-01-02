@@ -25,7 +25,6 @@ const gradeSchema = new mongoose.Schema({
   paper: {
     type: String,
     enum: ["PT1", "PT2", "Half Yearly", "PT3", "PT4", "Final"],
-    required: true,
   },
 });
 
