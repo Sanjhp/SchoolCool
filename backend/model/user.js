@@ -46,6 +46,11 @@ const userSchema = new mongoose.Schema({
   selfId: {
     type: String,
   },
+  estatus: {
+    type: String,
+    enum: ["temprory", "permanent"],
+    required: true,
+  },
   children: {
     type: [String], // Specify that it's an array of strings
     validate: {

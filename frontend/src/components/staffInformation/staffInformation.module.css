@@ -1,0 +1,80 @@
+/* ProfileSettings.module.css */
+.profile-settings-input-group {
+  margin-bottom: 40px;
+}
+
+/* Style for each row */
+.profile-settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-settings-row input:focus {
+  outline: none;
+  border-bottom-color: #03554e;
+}
+
+.profile-settings-row-forgot {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 25px;
+}
+
+.profile-settings-row-forgot:hover {
+  color: #d48800;
+  text-decoration: underline;
+}
+
+/* Style for labels */
+.profile-settings-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(50% - 10px); /* Divide the row into two equal parts */
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+  /* Remove the border from the labels */
+}
+
+/* Style for input fields */
+.profile-settings-input {
+  width: 85%;
+  padding: 10px;
+  border: none; /* Remove the border from the input fields */
+  border-radius: 5px;
+  font-size: 16px;
+  display: block;
+  margin-top: 5px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+/* Style for the "Save Settings" button */
+.profile-settings-submit {
+  display: block;
+  margin: 0 auto;
+  width: 260px;
+  height: 36px;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  background: #03554e;
+  text-transform: uppercase;
+}
+
+/* Center the "Profile Settings" heading */
+.profile-settings-h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #03554e;
+}
+
+.profile-settings-submit.complete {
+  background: #03554e;
+}

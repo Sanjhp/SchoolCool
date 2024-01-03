@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
-import styles from "./profileSettings.module.css";
+import styles from "./staffInformation.module.css";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const ProfileSettings = () => {
+const StaffInformation = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [children, setChildren] = useState("");
   const [validId, setValidId] = useState("");
-  const [password, setPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
+
   const [formComplete, setFormComplete] = useState(false);
 
   useEffect(() => {
@@ -87,25 +86,9 @@ const ProfileSettings = () => {
 
   useEffect(() => {
     const isFormComplete =
-      name &&
-      email &&
-      address &&
-      phoneNumber &&
-      children &&
-      validId &&
-      password &&
-      newPassword;
+      name && email && address && phoneNumber && children && validId;
     setFormComplete(isFormComplete);
-  }, [
-    name,
-    email,
-    address,
-    phoneNumber,
-    children,
-    validId,
-    password,
-    newPassword,
-  ]);
+  }, [name, email, address, phoneNumber, children, validId]);
 
   const handleSaveSettings = async () => {
     try {
@@ -198,7 +181,7 @@ const ProfileSettings = () => {
         <div className={styles["profile-settings-input-group"]}>
           <div className={styles["profile-settings-row"]}>
             <label className={styles["profile-settings-label"]}>
-              <span>Children School Id:</span>
+              <span>Staff Id:</span>
               <input
                 type="text"
                 value={children}
@@ -255,4 +238,4 @@ const ProfileSettings = () => {
   );
 };
 
-export default ProfileSettings;
+export default StaffInformation;
