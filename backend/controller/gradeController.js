@@ -4,38 +4,54 @@ const User = require("../model/user");
 // Create a new grade
 exports.createGrade = async (req, res) => {
   try {
-    const { schoolId, subject, marks, paper } = req.body;
-    console.log(req.body);
+    const gradeArray = req.body;
 
     // Validate request data
-    if (!schoolId || !subject || !marks || !paper) {
+    if (!Array.isArray(gradeArray) || gradeArray.length === 0) {
       return res.status(400).json({
-        message: "schoolId, subject, marks, and paper are required fields.",
+        message: "Invalid or empty array of grades.",
       });
     }
 
-    // Check if the user exists
-    const user = await User.findOne({ schoolId });
+    // Process each grade in the array
+    const savedGrades = [];
+    for (const gradeData of gradeArray) {
+      const { schoolId, subject, marks, paper } = gradeData;
 
-    if (!user) {
-      return res.status(404).json({ message: "User not found." });
+      // Validate grade data
+      if (!schoolId || !subject || !marks || !paper) {
+        return res.status(400).json({
+          message:
+            "schoolId, subject, marks, and paper are required fields for each grade.",
+        });
+      }
+
+      // Check if the user exists
+      const user = await User.findOne({ schoolId });
+
+      if (!user) {
+        return res
+          .status(404)
+          .json({ message: `User not found for schoolId: ${schoolId}` });
+      }
+
+      // Create a new Grade instance with fetched user data
+      const newGrade = new Grade({
+        schoolId: user.schoolId,
+        name: user.name,
+        class: user.class,
+        subject,
+        marks,
+        paper,
+      });
+
+      // Save the new grade to the database
+      const savedGrade = await newGrade.save();
+      savedGrades.push(savedGrade);
     }
 
-    // Create a new Grade instance with fetched user data
-    const newGrade = new Grade({
-      schoolId: user.schoolId,
-      name: user.name,
-      class: user.class,
-      subject,
-      marks,
-      paper, // Use the paper value from req.body
-    });
-
-    // Save the new grade to the database
-    const savedGrade = await newGrade.save();
-
-    // Respond with the saved grade
-    res.status(201).json(savedGrade);
+    // Respond with the saved grades
+    res.status(201).json(savedGrades);
   } catch (err) {
     // Handle errors
     res.status(500).json({ message: err.message });

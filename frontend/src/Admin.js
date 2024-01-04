@@ -9,6 +9,7 @@ import AdminDashboard from "./components/admin-dashboard/adminDashboard";
 import ManageAttendance from "./components/manage-attendance/manageAttendance";
 import StaffManagement from "./components/staffManagement/staffManagement";
 import StaffInformation from "./components/staffInformation/staffInformation";
+import ManageGrades from "./components/manage-grades/manageGrades";
 
 function Admin({ role }) {
   return (
@@ -39,6 +40,7 @@ function Admin({ role }) {
               path="/admin/manage-attendance"
               element={<ManageAttendance />}
             />
+            <Route path="/admin/grades" element={<ManageGrades />} />
           </Routes>
         </Container>
       </div>

@@ -19,5 +19,6 @@ router.get("/student", authController.getStudents);
 router.get("/staff", authController.getTeachers);
 router.get("/parent", authController.getParents);
 router.get("/user/:email", authController.getUserByEmail);
+router.get("/users/class/:userClass", authController.getUsersByClass);
 
 module.exports = router;

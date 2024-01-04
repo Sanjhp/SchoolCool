@@ -25,8 +25,11 @@ const ManageAttendance = () => {
       );
       if (response.status === 200) {
         setError("");
-        console.log(response.data);
-        setStudents(response.data);
+        const sortedStudents = response.data.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+        // console.log(response.data);
+        setStudents(sortedStudents);
         initializeAttendanceData(response.data);
         setIsStudentListFetched(true);
       } else {

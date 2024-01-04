@@ -274,3 +274,30 @@ exports.getUserByEmail = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+exports.getUsersByClass = async (req, res) => {
+  try {
+    const { userClass } = req.params;
+
+    // Find students of the specified class
+    const students = await User.find({ type: "student", class: userClass });
+    if (!students.length) {
+      return res
+        .status(404)
+        .json({ error: "No students found for the given class" });
+    }
+
+    // Extracting relevant details and omitting sensitive information
+    const studentsDetails = students.map((student) => ({
+      _id: student._id,
+      name: student.name,
+      rollNumber: student.rollNumber,
+      schoolId: student.schoolId,
+    }));
+
+    res.status(200).json({ students: studentsDetails });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
