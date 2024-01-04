@@ -3,44 +3,43 @@ const Attendance = require("../model/attendance");
 // Update attendance (POST /api/attendance)
 exports.updateAttendance = async (req, res) => {
   try {
-    const { schoolId, class: studentClass, isPresent } = req.body;
+    const attendanceDataArray = req.body;
 
     // Validate request data
-    if (!schoolId || !studentClass || typeof isPresent === "undefined") {
+    if (!Array.isArray(attendanceDataArray)) {
       return res.status(400).json({
-        message:
-          "schoolId, class, and isPresent are required fields for updating attendance.",
+        message: "Attendance data should be an array.",
       });
     }
 
-    // Find the attendance record based on schoolId and class
-    let attendance = await Attendance.findOne({
-      schoolId,
-      class: studentClass,
-    });
+    // Iterate through the array and update attendance records
+    const updatedAttendanceArray = await Promise.all(
+      attendanceDataArray.map(async (attendanceData) => {
+        const { _id, name, presentDays, absentDays } = attendanceData;
 
-    // If no attendance record exists, create a new one
-    if (!attendance) {
-      attendance = new Attendance({
-        schoolId,
-        class: studentClass,
-        absentDays: 0,
-        presentDays: 0,
-      });
-    }
+        // Find the attendance record based on _id
+        let attendance = await Attendance.findById(_id);
 
-    // Update attendance based on isPresent
-    if (isPresent) {
-      attendance.presentDays += 1;
-    } else {
-      attendance.absentDays += 1;
-    }
+        // If attendance record exists, update it; otherwise, create a new one
+        if (attendance) {
+          attendance.presentDays = presentDays;
+          attendance.absentDays = absentDays;
+        } else {
+          attendance = new Attendance({
+            _id,
+            name,
+            presentDays,
+            absentDays,
+          });
+        }
 
-    // Save the updated attendance to the database
-    const updatedAttendance = await attendance.save();
+        // Save the updated or new attendance to the database
+        return attendance.save();
+      })
+    );
 
-    // Respond with the updated attendance
-    res.json(updatedAttendance);
+    // Respond with the updated attendance array
+    res.json(updatedAttendanceArray);
   } catch (err) {
     // Handle errors
     res.status(500).json({ message: err.message });

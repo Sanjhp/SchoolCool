@@ -6,6 +6,10 @@ const attendanceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  name: {
+    type: String,
+    required: true,
+  },
   class: {
     type: String,
     required: true,

@@ -9,6 +9,8 @@ const AdminDashboard = () => {
   const [resources, setResources] = useState([]);
   const [error, setError] = useState("");
   const [editableResource, setEditableResource] = useState(null);
+  const [newResourceName, setNewResourceName] = useState("");
+  const [newResourceCount, setNewResourceCount] = useState("");
 
   const notifySuccess = (message) => toast.success(message);
   const notifyError = (message) => toast.error(message);
@@ -67,6 +69,22 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleAddResource = async () => {
+    try {
+      const response = await axios.post("/resource/resources", {
+        name: newResourceName,
+        numberOfResourcesAvailable: newResourceCount,
+      });
+      setResources([...resources, response.data]);
+      notifySuccess("Resource added successfully!");
+      setNewResourceName("");
+      setNewResourceCount("");
+    } catch (error) {
+      notifyError("Failed to add resource. Please try again.");
+      console.error("Error adding resource:", error);
+    }
+  };
+
   useEffect(() => {
     getStaff();
     getResources();
@@ -75,6 +93,7 @@ const AdminDashboard = () => {
   return (
     <div className={styles.mainStu}>
       <h2 className={styles.heading}>Staff Information</h2>
+
       <table className={styles.studentTable}>
         <thead className={styles.tableHead}>
           <tr>
@@ -83,7 +102,7 @@ const AdminDashboard = () => {
             {/* <th>Address</th> */}
             <th>Class Teacher</th>
             <th>Phone</th>
-            {/* <th>Staff ID</th> */}
+            <th>Staff ID</th>
             <th>Subject</th>
           </tr>
         </thead>
@@ -94,7 +113,7 @@ const AdminDashboard = () => {
               <td>{teacher?.email}</td>
               {/* <td>{teacher.address}</td> */}
               <td>{teacher?.classTeacher}</td>
-              {/* <td>{teacher.phone}</td> */}
+              <td>{teacher.phone}</td>
               <td>{teacher?.selfId}</td>
               <td>{teacher?.subject}</td>
             </tr>
@@ -103,6 +122,30 @@ const AdminDashboard = () => {
       </table>
 
       <h2 className={styles.heading}>Resource Information</h2>
+      <div className={styles.addResourceContainer}>
+        <input
+          type="text"
+          placeholder="Resource Name"
+          value={newResourceName}
+          className={styles.resourceInput}
+          onChange={(e) => setNewResourceName(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Number of Resources Available"
+          className={styles.resourceInput}
+          value={newResourceCount}
+          onChange={(e) => setNewResourceCount(e.target.value)}
+        />
+        <button
+          type="button"
+          className={styles.edit}
+          onClick={handleAddResource}
+        >
+          Add Resource
+        </button>
+      </div>
+
       <table className={styles.studentTable}>
         <thead className={styles.tableHead}>
           <tr>
