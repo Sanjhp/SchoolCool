@@ -1,9 +1,16 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import LoginPage from "./components/login/login";
 import Sidebar from "./components/sidebar/sidebar";
 import Container from "./components/container/container";
 import Header from "./components/Header/header";
+import Notice from "./components/notice/notice";
+import AddNotice from "./components/notice/addNotice";
+import ManageAttendance from "./components/manage-attendance/manageAttendance";
+import StaffInformation from "./components/staffInformation/staffInformation";
+import ManageGrades from "./components/manage-grades/manageGrades";
+import StudentInformation from "./components/studentInformation/studentInformation";
+import RaiseQuery from "./components/query/raiseQuery";
+import StaffDashboard from "./components/staff-dashboard/staffDashboard";
 
 function Staff({ role }) {
   return (
@@ -19,7 +26,21 @@ function Staff({ role }) {
         {/* Main Content */}
         <Container>
           <Routes>
-            <Route path="/studentdashboard" element={<LoginPage />} />
+            <Route path="/staff/notice" element={<Notice />} />
+            <Route path="/staff/add-notice" element={<AddNotice />} />
+            <Route path="/staff/help" element={<RaiseQuery />} />
+            <Route path="/dashboard" element={<StaffDashboard />} />
+
+            <Route
+              path="/staff/staff-information"
+              element={<StaffInformation />}
+            />
+            <Route path="/staff/attendance" element={<ManageAttendance />} />
+            <Route path="/staff/grades" element={<ManageGrades />} />
+            <Route
+              path="/staff/student-information"
+              element={<StudentInformation />}
+            />
           </Routes>
         </Container>
       </div>
