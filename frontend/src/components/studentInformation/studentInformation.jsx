@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import styles from "./staffInformation.module.css";
+import styles from "./studentInformation.module.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const StaffInformation = () => {
+const StudentInformation = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -49,8 +49,8 @@ const StaffInformation = () => {
       setPhoneNumber(userData.phone || "");
       setValidId(userData.selfId || "");
       setChildren(userData.schoolId || "");
-      setClassAssigned(userData.classTeacher || "");
-      setSubject(userData.subject || "");
+      setClassAssigned(userData.class || "");
+      setSubject(userData._id || "");
       setEmployeeStatus(userData.employeeStatus || "Guest");
       setUserId(userData._id);
 
@@ -83,9 +83,7 @@ const StaffInformation = () => {
   const handleSaveSettings = async () => {
     try {
       const dataToSend = {
-        estatus: employeeStatus,
-        classTeacher: classAssigned,
-        subject,
+        class: classAssigned,
       };
 
       const response = await axios.put(
@@ -106,7 +104,7 @@ const StaffInformation = () => {
   return (
     <div className={styles["profile-settings-container"]}>
       <div className={styles["profile-settings-form"]}>
-        <h2 className={styles["profile-settings-h2"]}>Staff Information</h2>
+        <h2 className={styles["profile-settings-h2"]}>Student Information</h2>
         <div className={styles["profile-settings-input-group"]}>
           <div className={styles["profile-settings-row"]}>
             <label className={styles["profile-settings-label"]}>
@@ -125,7 +123,7 @@ const StaffInformation = () => {
               Fetch Data
             </button>
             <label className={styles["profile-settings-label"]}>
-              <span>Staff ID:</span>
+              <span>School ID:</span>
               <input
                 type="text"
                 value={children}
@@ -192,24 +190,13 @@ const StaffInformation = () => {
               />
             </label>
             <label className={styles["profile-settings-label"]}>
-              <span>Employee Status:</span>
+              <span>Permanent Education Number:</span>
               <input
                 type="text"
                 value={subject}
                 onChange={handleSubjectChange}
                 className={styles["profile-settings-input"]}
               />
-            </label>
-            <label className={styles["profile-settings-label"]}>
-              <span>Employee Status:</span>
-              <select
-                value={employeeStatus}
-                onChange={handleEmployeeStatusChange}
-                className={styles["profile-settings-input"]}
-              >
-                <option value="guest">Guest</option>
-                <option value="permanent">Permanent</option>
-              </select>
             </label>
           </div>
         </div>
@@ -227,4 +214,4 @@ const StaffInformation = () => {
   );
 };
 
-export default StaffInformation;
+export default StudentInformation;

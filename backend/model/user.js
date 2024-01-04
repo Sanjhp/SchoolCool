@@ -48,8 +48,7 @@ const userSchema = new mongoose.Schema({
   },
   estatus: {
     type: String,
-    enum: ["temprory", "permanent"],
-    required: true,
+    enum: ["guest", "permanent"],
   },
   children: {
     type: [String], // Specify that it's an array of strings

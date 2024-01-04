@@ -7,9 +7,9 @@ import Notice from "./components/notice/notice";
 import AddNotice from "./components/notice/addNotice";
 import AdminDashboard from "./components/admin-dashboard/adminDashboard";
 import ManageAttendance from "./components/manage-attendance/manageAttendance";
-import StaffManagement from "./components/staffManagement/staffManagement";
 import StaffInformation from "./components/staffInformation/staffInformation";
 import ManageGrades from "./components/manage-grades/manageGrades";
+import StudentInformation from "./components/studentInformation/studentInformation";
 
 function Admin({ role }) {
   return (
@@ -28,10 +28,7 @@ function Admin({ role }) {
             <Route path="/admin/notice" element={<Notice />} />
             <Route path="/admin/add-notice" element={<AddNotice />} />
             <Route path="/dashboard" element={<AdminDashboard />} />
-            {/* <Route
-              path="/admin/staff-information"
-              element={<StaffManagement />}
-            /> */}
+
             <Route
               path="/admin/staff-information"
               element={<StaffInformation />}
@@ -41,6 +38,10 @@ function Admin({ role }) {
               element={<ManageAttendance />}
             />
             <Route path="/admin/grades" element={<ManageGrades />} />
+            <Route
+              path="/admin/student-information"
+              element={<StudentInformation />}
+            />
           </Routes>
         </Container>
       </div>

@@ -161,6 +161,7 @@ exports.updateUser = async (req, res) => {
       phone,
       selfId,
       children,
+      estatus,
     } = req.body;
 
     // Find the user by ID
@@ -193,6 +194,9 @@ exports.updateUser = async (req, res) => {
     }
     if (children) {
       user.children = children;
+    }
+    if (estatus) {
+      user.estatus = estatus;
     }
 
     // Save the updated user to the database
