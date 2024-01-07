@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./manageAttendance.module.css";
+import Cookies from "js-cookie";
 
 const ManageAttendance = () => {
   const [classCode, setClassCode] = useState("");
@@ -10,6 +11,25 @@ const ManageAttendance = () => {
   const [attendanceData, setAttendanceData] = useState([]);
   const [error, setError] = useState("");
   const [isStudentListFetched, setIsStudentListFetched] = useState(false);
+  const [role, setRole] = useState("undefined");
+
+  useEffect(() => {
+    // Fetch the user data from cookies
+    const userData = Cookies.get("user");
+
+    if (userData) {
+      // Parse the user data JSON
+      const user = JSON.parse(userData);
+
+      // Extract the role and class from the user data
+      const userRole = user.parent?.type || "undefined";
+      const userClass = user.parent?.classTeacher || "";
+
+      // Set the role and class in the state
+      setRole(userRole);
+      setClassCode(userRole === "staff" ? userClass : ""); // Set class only if the role is staff
+    }
+  }, []);
 
   useEffect(() => {
     // Fetch students when the component mounts or when classCode changes
@@ -106,6 +126,7 @@ const ManageAttendance = () => {
           value={classCode}
           className={styles.resourceInput}
           onChange={(e) => setClassCode(e.target.value)}
+          disabled={role === "staff"}
         />
       </div>
       <table className={styles.studentTable}>

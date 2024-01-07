@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./manageGrades.module.css";
+import Cookies from "js-cookie";
 
 const ManageGrades = () => {
   const [classCode, setClassCode] = useState("");
@@ -12,6 +13,28 @@ const ManageGrades = () => {
   const [marksData, setMarksData] = useState([]);
   const [error, setError] = useState("");
   const [isStudentListFetched, setIsStudentListFetched] = useState(false);
+  const [role, setRole] = useState("undefined");
+
+  useEffect(() => {
+    // Fetch the user data from cookies
+    const userData = Cookies.get("user");
+
+    if (userData) {
+      // Parse the user data JSON
+      const user = JSON.parse(userData);
+
+      // Extract the role from the user data
+      const userRole = user.parent?.type || "undefined";
+
+      // Set the role in the state
+      setRole(userRole);
+      const userClass = user.parent?.classTeacher || "";
+
+      // Set the role and class in the state
+      setRole(userRole);
+      setClassCode(userRole === "staff" ? userClass : ""); // Set class only if the role is staff
+    }
+  }, []);
 
   useEffect(() => {
     // Fetch students when the component mounts or when classCode changes
@@ -116,6 +139,7 @@ const ManageGrades = () => {
           value={classCode}
           className={styles.resourceInput}
           onChange={(e) => setClassCode(e.target.value)}
+          disabled={role === "staff"}
         />
         <select
           value={subject}

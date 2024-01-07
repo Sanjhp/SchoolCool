@@ -11,6 +11,7 @@ import ManageGrades from "./components/manage-grades/manageGrades";
 import StudentInformation from "./components/studentInformation/studentInformation";
 import RaiseQuery from "./components/query/raiseQuery";
 import StaffDashboard from "./components/staff-dashboard/staffDashboard";
+import QueryReply from "./components/query/queryReply";
 
 function Staff({ role }) {
   return (
@@ -28,7 +29,7 @@ function Staff({ role }) {
           <Routes>
             <Route path="/staff/notice" element={<Notice />} />
             <Route path="/staff/add-notice" element={<AddNotice />} />
-            <Route path="/staff/help" element={<RaiseQuery />} />
+            <Route path="/staff/help" element={<QueryReply />} />
             <Route path="/dashboard" element={<StaffDashboard />} />
 
             <Route
