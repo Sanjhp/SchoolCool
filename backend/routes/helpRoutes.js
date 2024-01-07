@@ -6,6 +6,6 @@ const helpController = require("../controller/helpController");
 router.post("/help", helpController.help);
 router.patch("/help/:id", helpController.updateHelpReply);
 router.get("/closedQuery/:schoolId", helpController.closedQuery);
-router.patch("/open", helpController.openQuery);
+router.get("/open/:queryClass", helpController.openQuery);
 
 module.exports = router;

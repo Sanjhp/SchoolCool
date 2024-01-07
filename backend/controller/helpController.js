@@ -3,7 +3,7 @@ const Help = require("../model/help");
 // Create a notice
 exports.help = async (req, res) => {
   try {
-    const { title, content, schoolId, reply } = req.body;
+    const { title, content, schoolId, reply, class: sclass } = req.body;
 
     // Validate request data
     if (!title || !content || !schoolId) {
@@ -19,6 +19,7 @@ exports.help = async (req, res) => {
       schoolId,
       status: "open",
       reply,
+      class: sclass,
     });
 
     // Save the new help to the database
@@ -60,10 +61,18 @@ exports.closedQuery = async (req, res) => {
 // GET endpoint for open help items
 exports.openQuery = async (req, res) => {
   try {
-    // Find help items with status 'open'
-    const openHelpItems = await Help.find({ status: "open" });
+    // Extract class parameter from the request URL
+    const { class: queryClass } = req.params;
 
-    // Respond with the open help items
+    // Construct a query object based on the class parameter
+    const query = queryClass
+      ? { status: "open", class: queryClass }
+      : { status: "open" };
+
+    // Use the constructed query to find open help items
+    const openHelpItems = await Help.find(query);
+
+    // Respond with the found open help items
     res.json(openHelpItems);
   } catch (err) {
     // Handle errors

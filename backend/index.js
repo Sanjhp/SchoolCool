@@ -9,6 +9,7 @@ const gradeRoutes = require("./routes/gradeRoutes");
 const resourceRoutes = require("./routes/resourceRoutes");
 const attendanceRoutes = require("./routes/attendanceRoutes");
 const timetableRoutes = require("./routes/timetableRoutes");
+// const notesRoutes = require("./routes/notesRoutes");
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use("/grade", gradeRoutes);
 app.use("/resource", resourceRoutes);
 app.use("/attendance", attendanceRoutes);
 app.use("/timetable", timetableRoutes);
+// app.use("/notes", notesRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000;

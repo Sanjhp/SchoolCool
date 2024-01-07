@@ -14,6 +14,9 @@ const helpSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  class: {
+    type: String,
+  },
   reply: {
     type: String,
   },
