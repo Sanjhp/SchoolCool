@@ -70,6 +70,11 @@ const Sidebar = ({ role }) => {
           link: "/dashboard",
         },
         {
+          label: "Course",
+          icon: <FaFileAlt />,
+          link: "/student/course",
+        },
+        {
           label: "Student Profile",
           icon: <FaBookReader />,
           link: "/student/profile",
@@ -113,11 +118,11 @@ const Sidebar = ({ role }) => {
           icon: <FaUsers />,
           link: "/staff/student-information",
         },
-        {
-          label: "Course",
-          icon: <FaFileAlt />,
-          link: "/staff/course",
-        },
+        // {
+        //   label: "Course",
+        //   icon: <FaFileAlt />,
+        //   link: "/staff/course",
+        // },
         {
           label: "Help",
           icon: <BsFillQuestionCircleFill />,

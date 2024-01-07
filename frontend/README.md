@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# School Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This School Management System is a comprehensive web application that offers a range of features to streamline various aspects of school administration, student management, and communication between stakeholders. Below is an overview of the features and instructions for running the application.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+1. **User Authentication:**
 
-### `npm start`
+   - Supports registration and login for administrators, teachers, students, and parents.
+   - Role-based access control to manage permissions based on user types.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Student Management:**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   - Creation, modification, and deletion of student records.
+   - Tracks personal information, enrolment status, and academic history.
 
-### `npm test`
+3. **Staff Management:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   - Administration can manage staff information, including personal details, employment status, and teaching assignments.
 
-### `npm run build`
+4. **Course Scheduling:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   - Facilitates the creation and management of course schedules.
+   - Includes class timings, room assignments, and instructor allocation.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. **Attendance Tracking:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   - Teachers can record and track student attendance for each class.
+   - Administrators and parents can monitor overall attendance trends.
 
-### `npm run eject`
+6. **Grade Management:**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   - Teachers can input and manage student grades.
+   - Generates report cards and progress reports for parents.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+7. **Parent Portal:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   - Provides parents with access to their children's academic information.
+   - Includes attendance, grades, and teacher feedback.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+8. **Communication Tools:**
 
-## Learn More
+   - Offers help functionality for direct communication between teachers, students, and parents.
+   - Notices for announcements and notifications.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+9. **Resource Management:**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   - Administrators can manage school resources such as classrooms, labs, and equipment.
+   - Tracks resource usage and availability.
 
-### Code Splitting
+10. **Dashboard and Reporting:**
+    - Provides users with personalized dashboards.
+    - Generates various reports for monitoring performance and making data-driven decisions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Test Credentials
 
-### Analyzing the Bundle Size
+- **Student:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  - Email: student1@example.com
+  - Password: password123
 
-### Making a Progressive Web App
+- **Teacher:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  - Email: teacher.smith@example.com
+  - Password: teacher123
 
-### Advanced Configuration
+- **Parent:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  - Email: parent1@example.com
+  - Password: password123
 
-### Deployment
+- **Admin:**
+  - Email: admin@example.com
+  - Password: admin123
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Running the Application
 
-### `npm run build` fails to minify
+1. **Install Dependencies:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   - Run `npm i` in the root folder, frontend folder, and backend folder.
+
+2. **Directly StartApplication:**
+   - Run `npm start` to start the React application in root folder.
+
+**OR**
+
+2. **Start the Backend Server:**
+
+   - Navigate to the backend folder.
+   - Run `nodemon app` to start the backend server.
+   - The server will run on [http://localhost:5000](http://localhost:5000).
+
+3. **Start the Frontend Application:**
+
+   - Navigate to the frontend folder.
+   - Run `npm start` to start the React application.
+   - The app will be available on [http://localhost:3000](http://localhost:3000).
+
+4. **Explore the Application:**
+   - Use the test credentials to log in and explore the features of the School Management System.
+
+**Note:** This application was bootstrapped with Create React App, and the backend server runs on [http://localhost:5000](http://localhost:5000).

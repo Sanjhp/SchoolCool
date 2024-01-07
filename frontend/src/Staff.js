@@ -9,9 +9,9 @@ import ManageAttendance from "./components/manage-attendance/manageAttendance";
 import StaffInformation from "./components/staffInformation/staffInformation";
 import ManageGrades from "./components/manage-grades/manageGrades";
 import StudentInformation from "./components/studentInformation/studentInformation";
-import RaiseQuery from "./components/query/raiseQuery";
 import StaffDashboard from "./components/staff-dashboard/staffDashboard";
 import QueryReply from "./components/query/queryReply";
+import FetchCourse from "./components/course/fetchCourse";
 
 function Staff({ role }) {
   return (
@@ -38,6 +38,7 @@ function Staff({ role }) {
             />
             <Route path="/staff/attendance" element={<ManageAttendance />} />
             <Route path="/staff/grades" element={<ManageGrades />} />
+            <Route path="/staff/course" element={<FetchCourse />} />
             <Route
               path="/staff/student-information"
               element={<StudentInformation />}

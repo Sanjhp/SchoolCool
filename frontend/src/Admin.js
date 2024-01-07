@@ -10,6 +10,7 @@ import ManageAttendance from "./components/manage-attendance/manageAttendance";
 import StaffInformation from "./components/staffInformation/staffInformation";
 import ManageGrades from "./components/manage-grades/manageGrades";
 import StudentInformation from "./components/studentInformation/studentInformation";
+import CourseCreation from "./components/course/course";
 
 function Admin({ role }) {
   return (
@@ -38,6 +39,7 @@ function Admin({ role }) {
               element={<ManageAttendance />}
             />
             <Route path="/admin/grades" element={<ManageGrades />} />
+            <Route path="/admin/course-schedule" element={<CourseCreation />} />
             <Route
               path="/admin/student-information"
               element={<StudentInformation />}

@@ -5,9 +5,9 @@ import Container from "./components/container/container";
 import Header from "./components/Header/header";
 import Notice from "./components/notice/notice";
 import RaiseQuery from "./components/query/raiseQuery";
-import QueryReply from "./components/query/queryReply";
 import Dashboard from "./components/dashboardParent/dashboard";
 import ProfileSettings from "./components/profileSettings/profileSettings";
+import RepliedQuery from "./components/query/repliedQuery";
 
 function Parent({ role }) {
   return (
@@ -26,7 +26,7 @@ function Parent({ role }) {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/parent/notice" element={<Notice />} />
             <Route path="/parent/help" element={<RaiseQuery />} />
-            <Route path="/parent/reply" element={<QueryReply />} />
+            <Route path="/parent/reply" element={<RepliedQuery />} />
             <Route path="/parent/profile" element={<ProfileSettings />} />
           </Routes>
         </Container>

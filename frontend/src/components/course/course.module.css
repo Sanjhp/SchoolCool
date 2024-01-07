@@ -1,0 +1,79 @@
+.mainGrades {
+  margin-left: 20%;
+  margin-right: 15px;
+  margin-top: 83px;
+  width: 81%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  min-height: 490px;
+}
+
+.container {
+  display: flex;
+  overflow-x: hidden;
+}
+
+.studentTable {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.tableHead th {
+  background-color: #03554e;
+  text-align: left;
+  padding: 15px;
+  font-weight: bold;
+  color: white;
+}
+
+.studentTable td {
+  text-align: left;
+  padding: 18px;
+  border: 1px solid #ddd;
+}
+
+/* Style for dropdowns */
+.studentTable select {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  color: #333;
+  font-size: 14px;
+}
+
+.headingGrades {
+  font-size: 30px;
+  color: #03554e;
+  text-align: center;
+}
+
+.inputSearchGrades {
+  border: none;
+  border-bottom: 1px solid #03554e;
+  outline: none;
+  margin-right: 20px;
+}
+
+.greenBackground {
+  background-color: #e4a503;
+  color: white;
+}
+
+.edit {
+  display: block;
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 260px;
+  height: 36px;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  background: #03554e;
+  text-transform: uppercase;
+}

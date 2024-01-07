@@ -5,9 +5,10 @@ import Container from "./components/container/container";
 import Header from "./components/Header/header";
 import Notice from "./components/notice/notice";
 import RaiseQuery from "./components/query/raiseQuery";
-import QueryReply from "./components/query/queryReply";
 import Dashboard from "./components/dashboardParent/dashboard";
 import ProfileSettings from "./components/profileSettings/profileSettings";
+import RepliedQuery from "./components/query/repliedQuery";
+import FetchCourse from "./components/course/fetchCourse";
 
 function Student({ role }) {
   return (
@@ -26,7 +27,8 @@ function Student({ role }) {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/student/notice" element={<Notice />} />
             <Route path="/student/help" element={<RaiseQuery />} />
-            <Route path="/student/reply" element={<QueryReply />} />
+            <Route path="/student/course" element={<FetchCourse />} />
+            <Route path="/student/reply" element={<RepliedQuery />} />
             <Route path="/student/profile" element={<ProfileSettings />} />
           </Routes>
         </Container>

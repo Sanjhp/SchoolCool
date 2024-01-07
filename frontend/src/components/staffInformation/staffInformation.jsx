@@ -116,11 +116,13 @@ const StaffInformation = () => {
                 value={email}
                 onChange={handleEmailChange}
                 className={styles["profile-settings-input"]}
+                required
               />
             </label>
             <button
               className={styles["profile-settings-fetch"]}
               onClick={fetchData}
+              disabled={!email}
             >
               Fetch Data
             </button>
